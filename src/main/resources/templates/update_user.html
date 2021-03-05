@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>New user</title>
+<title>Update User</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -32,28 +32,29 @@
 	<br>
 	<div class="container">
 		<fieldset>
-			<legend>New User</legend>
+			<legend>Update User</legend>
 			<form action="#" th:action="@{/saveUser}" th:object="${user}"
 				method="post" id="needs-validation" novalidate>
+
+				<input type="hidden" th:field="*{id}">
+
 				<div class="form-group">
-					<input type="text" th:field="*{uname}" placeholder="User Name"
-						class="form-control" id="uname"
-						aria-describedby="inputGroupPrepend" required>
+					<input type="text" th:field="*{id}" disabled class="form-control">
+				</div>
+				<div class="form-group">
+					<input type="text" th:field="*{uname}" class="form-control"
+						id="uname" aria-describedby="inputGroupPrepend" required>
 					<div class="invalid-feedback">Please enter Your name.</div>
 				</div>
 				<div class="form-group">
-					<input type="email" th:field="*{email}" placeholder="Email"
-						class="form-control" id="email"
-						aria-describedby="inputGroupPrepend" required>
+					<input type="email" th:field="*{email}" class="form-control"
+						id="email" aria-describedby="inputGroupPrepend" required>
 					<div class="invalid-feedback">Please provide a valid email.</div>
 				</div>
 				<div class="form-group">
-					<input type="password" th:field="*{password}"
-						placeholder="Password" class="form-control" id="password"
-						aria-describedby="inputGroupPrepend" required>
-					<div class="invalid-feedback">Password can't be empty.</div>
+					<input type="hidden" th:field="*{password}" class="form-control">
 				</div>
-				<button type="submit" class="btn btn-info">Save User</button>
+				<button type="submit" class="btn btn-info">Update User</button>
 			</form>
 		</fieldset>
 

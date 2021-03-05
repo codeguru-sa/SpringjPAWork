@@ -3,35 +3,43 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>User List</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
 </head>
 <body>
 	<div align="center" class="container">
-	<br>
-	<h3>Userlist</h3>
-	<hr>
+		<br>
+		<h3>Userlist</h3>
+		<hr>
 		<table class="table table-bordered">
 			<thead>
-				<tr>
+				<tr class="text-center">
 					<td>UserID</td>
 					<td>UserName</td>
 					<td>Email</td>
+					<td>Actions</td>
 				</tr>
 			</thead>
-			<tbody>
-				<tr th:each = "user : ${listUsers}">
+			<tbody class="text-center">
+				<tr th:each="user : ${listUsers}">
 					<td th:text="${user.id}"></td>
 					<td th:text="${user.uname}"></td>
 					<td th:text="${user.email}"></td>
+					<td><a th:href="@{/showFormForUpdate/{id}(id=${user.id})}"
+						class="btn btn-primary float-left">Update</a> <a
+						th:href="@{/deleteUser/{id}(id=${user.id})}"
+						class="btn btn-danger float-right"
+						onclick="return confirm('Are you sure you want to delete?');">Delete</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 	<div class="container">
-		<a th:href="@{/saveNewUserForm}" class="btn btn-primary">New User</a>
+		<a th:href="@{/saveNewUserForm}"
+			class="btn btn-success text-center btn-lg">New User</a>
 	</div>
 </body>
 </html>

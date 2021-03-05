@@ -1,10 +1,10 @@
 package com.guru.vit.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import com.guru.vit.model.User;
@@ -25,6 +25,23 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void saveUser(User user) {
 		this.userRepository.save(user);
+	}
+
+	@Override
+	public User getUserById(long id) {
+		Optional<User> optional = userRepository.findById(id);
+		User user=null;
+		if(optional.isPresent()) {
+			user = optional.get();
+		}else {
+			throw new RuntimeException("User Not Found for id = " + id );
+		}
+		return user;
+	}
+
+	@Override
+	public void deleteUserById(long id) {
+		this.userRepository.deleteById(id);
 	}
 
 }
